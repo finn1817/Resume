@@ -6,12 +6,20 @@
     <title>Dan Finn's Resume</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             font-family: 'Roboto', sans-serif;
             background-color: #f4f4f4;
             color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
+
         .back-to-home {
             position: fixed;
             top: 10px;
@@ -24,21 +32,25 @@
             font-weight: bold;
             z-index: 999;
         }
+
         .back-to-home:hover {
             background-color: #45a049;
         }
+
         header {
             background-color: #0056b3;
             color: white;
             padding: 30px 20px;
             text-align: center;
         }
+
         nav {
             display: flex;
             justify-content: center;
             background-color: #003f7f;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
+
         nav button {
             background: none;
             border: none;
@@ -48,15 +60,19 @@
             cursor: pointer;
             transition: background 0.3s;
         }
+
         nav button:hover,
         nav button.active {
             background-color: #004e99;
         }
+
         .content {
             max-width: 900px;
             margin: 0 auto;
-            padding: 30px 20px;
+            padding: 30px 20px 80px; /* bottom padding to avoid footer overlap */
+            flex: 1;
         }
+
         .tab-content {
             display: none;
             background-color: white;
@@ -65,23 +81,20 @@
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
+
         .tab-content.active {
             display: block;
         }
+
         ul {
             list-style: none;
             padding-left: 0;
         }
+
         li {
             margin: 5px 0;
         }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #f4f4f4;
-            color: #555;
-            font-size: 14px;
-        }
+
         input, textarea, button[type="submit"] {
             display: block;
             width: 100%;
@@ -90,12 +103,14 @@
             border: 1px solid #aaa;
             border-radius: 5px;
         }
+
         label {
             font-weight: bold;
         }
+
         .popup {
             position: fixed;
-            bottom: 20px;
+            bottom: 70px;
             left: 50%;
             transform: translateX(-50%);
             background-color: #333;
@@ -104,6 +119,19 @@
             border-radius: 5px;
             z-index: 1000;
             display: none;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #ddd;
+            text-align: center;
+            padding: 8px 10px;
+            font-size: 13px;
+            color: #444;
+            box-shadow: 0 -1px 4px rgba(0,0,0,0.1);
         }
     </style>
 </head>
@@ -186,7 +214,6 @@
     <div id="contact" class="tab-content">
         <h2>Contact Me</h2>
         <p>If you'd like to get in touch with me, fill out the form below and I'll reach out as soon as I can!</p>
-
         <form id="contactForm" action="https://submit-form.com/w4rC8WMH3">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" required placeholder="Name" />
@@ -201,8 +228,7 @@
 </div>
 
 <footer>
-    <p>&copy; 2025 Dan Finn</p>
-    <p>Thank you for visiting my website!</p>
+    &copy; 2025 Dan Finn — All rights reserved.
 </footer>
 
 <script>
