@@ -1,277 +1,362 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Dan Finn's Resume</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dan Finn's Resume</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-        body {
-            margin: 0;
-            font-family: 'Roboto', sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
 
-        .back-to-home {
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            padding: 10px 20px;
-            background-color: #4caf50;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            z-index: 999;
-        }
+    header {
+      background-color: #0056b3;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
 
-        .back-to-home:hover {
-            background-color: #45a049;
-        }
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #003f7f;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
 
-        header {
-            background-color: #0056b3;
-            color: white;
-            padding: 30px 20px;
-            text-align: center;
-        }
+    nav button {
+      background: none;
+      border: none;
+      color: white;
+      padding: 14px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
 
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #003f7f;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
+    nav button:hover,
+    nav button.active {
+      background-color: #004e99;
+    }
 
-        nav button {
-            background: none;
-            border: none;
-            color: white;
-            padding: 14px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 30px 20px 80px;
+      flex: 1;
+    }
 
-        nav button:hover,
-        nav button.active {
-            background-color: #004e99;
-        }
+    .tab-content {
+      display: none;
+      background-color: white;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
 
-        .content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 30px 20px 80px; /* bottom padding to avoid footer overlap */
-            flex: 1;
-        }
+    .tab-content.active {
+      display: block;
+    }
 
-        .tab-content {
-            display: none;
-            background-color: white;
-            padding: 20px;
-            margin-top: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
+    h2 {
+      font-size: 24px;
+      font-weight: 700;
+      border-bottom: 2px solid #0056b3;
+      padding-bottom: 5px;
+      margin-bottom: 20px;
+    }
 
-        .tab-content.active {
-            display: block;
-        }
+    h3 {
+      font-size: 18px;
+      margin: 10px 0 5px;
+      color: #003f7f;
+    }
 
-        ul {
-            list-style: none;
-            padding-left: 0;
-        }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
 
-        li {
-            margin: 5px 0;
-        }
+    li {
+      margin: 6px 0;
+      font-size: 15px;
+      line-height: 1.5;
+    }
 
-        input, textarea, button[type="submit"] {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            border: 1px solid #aaa;
-            border-radius: 5px;
-        }
+    input, textarea, button[type="submit"] {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #aaa;
+      border-radius: 5px;
+    }
 
-        label {
-            font-weight: bold;
-        }
+    label {
+      font-weight: bold;
+    }
 
-        .popup {
-            position: fixed;
-            bottom: 70px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #333;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            z-index: 1000;
-            display: none;
-        }
+    .collapsible {
+      background-color: #eef1f8;
+      border: 1px solid #cdd3df;
+      border-radius: 5px;
+      padding: 15px;
+      margin-bottom: 15px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
 
-        footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #ddd;
-            text-align: center;
-            padding: 8px 10px;
-            font-size: 13px;
-            color: #444;
-            box-shadow: 0 -1px 4px rgba(0,0,0,0.1);
-        }
-    </style>
+    .collapsible:hover {
+      background-color: #e1e7f0;
+    }
+
+    .collapsible h3 {
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .collapsible-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .collapsible.open .collapsible-content {
+      max-height: 500px;
+      margin-top: 10px;
+    }
+
+    .popup {
+      position: fixed;
+      bottom: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #333;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      z-index: 1000;
+      display: none;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #ddd;
+      text-align: center;
+      padding: 8px 10px;
+      font-size: 13px;
+      color: #444;
+      box-shadow: 0 -1px 4px rgba(0,0,0,0.1);
+    }
+
+    .back-to-home {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      z-index: 999;
+    }
+
+    .back-to-home:hover {
+      background-color: #45a049;
+    }
+  </style>
 </head>
 <body>
 
 <a href="https://finn1817.github.io/HomePage/" class="back-to-home">Click this to see my main website!</a>
 
 <header>
-    <h1>Dan Finn - Resume Website</h1>
-    <p>Computer Science Student at SUNY Fredonia, NY</p>
+  <h1>Dan Finn - Resume Website</h1>
+  <p>Computer Science Student at SUNY Fredonia, NY</p>
 </header>
 
 <nav>
-    <button class="tab-button active" data-tab="about">About</button>
-    <button class="tab-button" data-tab="education">Education</button>
-    <button class="tab-button" data-tab="experience">IT Experience</button>
-    <button class="tab-button" data-tab="skills">Skills</button>
-    <button class="tab-button" data-tab="contact">Contact</button>
+  <button class="tab-button active" data-tab="about">About</button>
+  <button class="tab-button" data-tab="education">Education</button>
+  <button class="tab-button" data-tab="experience">IT Experience</button>
+  <button class="tab-button" data-tab="skills">Skills</button>
+  <button class="tab-button" data-tab="contact">Contact</button>
 </nav>
 
 <div class="content">
-    <div id="about" class="tab-content active">
-        <h2>About Me</h2>
-        <p>I am a computer science student at Fredonia University with a huge interest in coding. I have completed courses in C++, C#, Python, HTML, Bash, Assembly Language, and a few others. I enjoy challenging projects that actually allow me to grow as a programmer.</p>
+  <div id="about" class="tab-content active">
+    <h2>About Me</h2>
+    <p>I am a computer science student at Fredonia University with a huge interest in coding. I have completed courses in C++, C#, Python, HTML, Bash, Assembly Language, and a few others. I enjoy challenging projects that actually allow me to grow as a programmer.</p>
+  </div>
+
+  <div id="education" class="tab-content">
+    <h2>Education</h2>
+    <ul>
+      <li>Currently Attending - Bachelor of Science in Computer Science, Fredonia University</li>
+      <li>Graduated from (High School) - Bishop Timon St. Jude High School</li>
+    </ul>
+  </div>
+
+  <div id="experience" class="tab-content">
+    <h2>IT Experience</h2>
+
+    <div class="collapsible">
+      <h3>Lounge Attendant — SUNY Fredonia</h3>
+      <div class="collapsible-content">
+        <ul>
+          <li>Oversaw 12 gaming PCs and consoles (Xbox, PS5, Nintendo Switch), ensuring proper function and user accountability.</li>
+          <li>Managed sign-in records and enforced lounge rules to maintain a respectful and safe environment.</li>
+          <li>Provided hands-on troubleshooting and updates for gaming PCs and console software.</li>
+        </ul>
+      </div>
     </div>
 
-    <div id="education" class="tab-content">
-        <h2>Education</h2>
+    <div class="collapsible">
+      <h3>AV Club — Bishop Timon St. Jude</h3>
+      <div class="collapsible-content">
         <ul>
-            <li>Currently Attending - Bachelor of Science in Computer Science, Fredonia University</li>
-            <li>Graduated from (High School) - Bishop Timon St. Jude High School</li>
+          <li>Worked with professional audio/video equipment for school events and livestreams.</li>
+          <li>Handled live sound setup, video recording, and post-production tasks.</li>
+          <li>Operated soundboards, wireless mics, and video cameras under tight time constraints.</li>
         </ul>
+      </div>
     </div>
 
-    <div id="experience" class="tab-content">
-        <h2>IT Experience</h2>
-        <h3>Lounge Attendant - SUNY Fredonia</h3>
+    <div class="collapsible">
+      <h3>ITS Internship (Programming) — 2024–2025</h3>
+      <div class="collapsible-content">
         <ul>
-            <li>Supervise 12 gaming PCs and consoles (Xbox, PS5, Nintendo Switch), ensuring all equipment runs smoothly.</li>
-            <li>Track sign-ins and equipment usage for accountability.</li>
-            <li>Monitor environment for safety, enforcing rules during peak hours.</li>
-            <li>Troubleshoot/update PC and console issues on the fly.</li>
+          <li>Designed and implemented a scheduling system to manage workers from three workplace locations.</li>
+          <li>Created an application to automate schedule creation based on availability and workplace hours.</li>
+          <li>Integrated a real-time feature allowing managers to search for available employees last minute.</li>
         </ul>
-        <h3>AV Club - Bishop Timon St. Jude</h3>
-        <ul>
-            <li>Gained hands-on experience with video/audio production equipment.</li>
-            <li>Worked live streaming sports events and assisted with tech setup.</li>
-            <li>Used soundboards, wireless audio systems, amplifiers, and cameras.</li>
-        </ul>
+      </div>
     </div>
 
-    <div id="skills" class="tab-content">
-        <h2>Skills</h2>
+    <div class="collapsible">
+      <h3>ITS Internship (Help Desk) — Summer 2025 (Current)</h3>
+      <div class="collapsible-content">
         <ul>
-            <li><b>Programming:</b> C++, C#, Python, HTML, SQL, Bash. Some knowledge in Java, Kotlin, R, Perl, Assembly.</li>
-            <li><b>Web:</b> Strong with HTML/JavaScript. Built many web apps.</li>
-            <li><b>Cybersecurity:</b> Networking, routers/switches, troubleshooting.</li>
-            <li><b>OS:</b> Windows, Linux (Ubuntu/Debian), macOS, Android. Command-line and system admin experience.</li>
-            <li><b>VMs:</b> Experienced setting up and configuring virtual machines.</li>
-            <li><b>Tools Used:</b>
-                <ul>
-                    <li>Microsoft Office Suite (Word, Excel, PowerPoint, Access)</li>
-                    <li>Visual Studio / VS Code</li>
-                    <li>GitHub (individual & group work)</li>
-                    <li>WinSCP (remote file transfer)</li>
-                    <li>Terminal / PowerShell (automation, search, admin tasks)</li>
-                </ul>
-            </li>
-            <li><b>Projects:</b>
-                <ul>
-                    <li>C++: file editors, automation tools, math programs, games, database-linked apps</li>
-                    <li>Python: scripting, pattern parsing, automation</li>
-                    <li>Bash: install/uninstall scripts, system tweaks on Windows</li>
-                    <li>Homebrew/Modding: installed custom firmware, WiiFlow/USB Loader on Wii, handled troubleshooting</li>
-                </ul>
-            </li>
+          <li>Provided in-person and remote technical support for staff and faculty.</li>
+          <li>Assisted with ticket-based troubleshooting, software setup, and basic hardware issues.</li>
+          <li>Collaborated with the office team to improve tech efficiency across departments.</li>
         </ul>
+      </div>
     </div>
+  </div>
 
-    <div id="contact" class="tab-content">
-        <h2>Contact Me</h2>
-        <p>If you'd like to get in touch with me, fill out the form below and I'll reach out as soon as I can!</p>
-        <form id="contactForm" action="https://submit-form.com/w4rC8WMH3">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required placeholder="Name" />
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required placeholder="Email" />
-            <label for="message">Message</label>
-            <textarea id="message" name="message" required placeholder="Message"></textarea>
-            <button type="submit">Send</button>
-        </form>
-        <div class="popup" id="popup"></div>
-    </div>
+  <div id="skills" class="tab-content">
+    <h2>Skills</h2>
+    <ul>
+      <li><b>Programming:</b> C++, C#, Python, HTML, SQL, Bash. Some knowledge in Java, Kotlin, R, Perl, Assembly.</li>
+      <li><b>Web:</b> Strong with HTML/JavaScript. Built many web apps.</li>
+      <li><b>Cybersecurity:</b> Networking, routers/switches, troubleshooting.</li>
+      <li><b>OS:</b> Windows, Linux (Ubuntu/Debian), macOS, Android. Command-line and system admin experience.</li>
+      <li><b>VMs:</b> Experienced setting up and configuring virtual machines.</li>
+      <li><b>Tools Used:</b>
+        <ul>
+          <li>Microsoft Office Suite (Word, Excel, PowerPoint, Access)</li>
+          <li>Visual Studio / VS Code</li>
+          <li>GitHub (individual & group work)</li>
+          <li>WinSCP (remote file transfer)</li>
+          <li>Terminal / PowerShell (automation, search, admin tasks)</li>
+        </ul>
+      </li>
+      <li><b>Projects:</b>
+        <ul>
+          <li>C++: file editors, automation tools, math programs, games, database-linked apps</li>
+          <li>Python: scripting, pattern parsing, automation</li>
+          <li>Bash: install/uninstall scripts, system tweaks on Windows</li>
+          <li>Homebrew/Modding: installed custom firmware, WiiFlow/USB Loader on Wii, handled troubleshooting</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div id="contact" class="tab-content">
+    <h2>Contact Me</h2>
+    <p>If you'd like to get in touch with me, fill out the form below and I'll reach out as soon as I can!</p>
+    <form id="contactForm" action="https://submit-form.com/w4rC8WMH3">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required placeholder="Name" />
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required placeholder="Email" />
+      <label for="message">Message</label>
+      <textarea id="message" name="message" required placeholder="Message"></textarea>
+      <button type="submit">Send</button>
+    </form>
+    <div class="popup" id="popup"></div>
+  </div>
 </div>
 
 <footer>
-    &copy; 2025 Dan Finn — All rights reserved.
+  &copy; 2025 Dan Finn — All rights reserved.
 </footer>
 
 <script>
-    // tab switching logic
-    document.querySelectorAll('.tab-button').forEach(button => {
-        button.addEventListener('click', () => {
-            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            button.classList.add('active');
-            document.getElementById(button.getAttribute('data-tab')).classList.add('active');
-        });
+  document.querySelectorAll('.tab-button').forEach(button => {
+    button.addEventListener('click', () => {
+      document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      button.classList.add('active');
+      document.getElementById(button.getAttribute('data-tab')).classList.add('active');
     });
+  });
 
-    // contact form logic
-    document.addEventListener("DOMContentLoaded", function() {
-        const form = document.getElementById("contactForm");
-        const popup = document.getElementById("popup");
-
-        if (localStorage.getItem("formSubmitted") === "true") {
-            disableForm();
-        }
-
-        function disableForm() {
-            form.querySelector("button[type='submit']").disabled = true;
-            showPopup("Message already sent. You can only submit once!");
-        }
-
-        function showPopup(message) {
-            popup.innerText = message;
-            popup.style.display = "block";
-            setTimeout(() => { popup.style.display = "none"; }, 3000);
-        }
-
-        form.addEventListener("submit", function(e) {
-            if (!localStorage.getItem("formSubmitted")) {
-                localStorage.setItem("formSubmitted", "true");
-                showPopup("Message sent! Thank you.");
-            } else {
-                e.preventDefault();
-                showPopup("Message already sent. You can only submit once!");
-            }
-        });
+  document.querySelectorAll('.collapsible').forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('open');
     });
+  });
+
+  document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById("contactForm");
+    const popup = document.getElementById("popup");
+
+    if (localStorage.getItem("formSubmitted") === "true") {
+      disableForm();
+    }
+
+    function disableForm() {
+      form.querySelector("button[type='submit']").disabled = true;
+      showPopup("Message already sent. You can only submit once!");
+    }
+
+    function showPopup(message) {
+      popup.innerText = message;
+      popup.style.display = "block";
+      setTimeout(() => {
+        popup.style.display = "none";
+      }, 3000);
+    }
+
+    form.addEventListener("submit", function(e) {
+      if (!localStorage.getItem("formSubmitted")) {
+        localStorage.setItem("formSubmitted", "true");
+        showPopup("Message sent! Thank you.");
+      } else {
+        e.preventDefault();
+        showPopup("Message already sent. You can only submit once!");
+      }
+    });
+  });
 </script>
 
 </body>
