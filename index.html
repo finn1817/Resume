@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Dan Finn's Resume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .back-to-home {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            z-index: 999;
+        }
+        .back-to-home:hover {
+            background-color: #45a049;
+        }
+        header {
+            background-color: #0056b3;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #003f7f;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        nav button {
+            background: none;
+            border: none;
+            color: white;
+            padding: 14px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        nav button:hover,
+        nav button.active {
+            background-color: #004e99;
+        }
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        .tab-content {
+            display: none;
+            background-color: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .tab-content.active {
+            display: block;
+        }
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #555;
+            font-size: 14px;
+        }
+        input, textarea, button[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+        }
+        label {
+            font-weight: bold;
+        }
+        .popup {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            z-index: 1000;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<a href="https://finn1817.github.io/HomePage/" class="back-to-home">Click this to see my main website!</a>
+
+<header>
+    <h1>Dan Finn - Resume Website</h1>
+    <p>Computer Science Student at SUNY Fredonia, NY</p>
+</header>
+
+<nav>
+    <button class="tab-button active" data-tab="about">About</button>
+    <button class="tab-button" data-tab="education">Education</button>
+    <button class="tab-button" data-tab="experience">IT Experience</button>
+    <button class="tab-button" data-tab="skills">Skills</button>
+    <button class="tab-button" data-tab="contact">Contact</button>
+</nav>
+
+<div class="content">
+    <div id="about" class="tab-content active">
+        <h2>About Me</h2>
+        <p>I am a computer science student at Fredonia University with a huge interest in coding. I have completed courses in C++, C#, Python, HTML, Bash, Assembly Language, and a few others. I enjoy challenging projects that actually allow me to grow as a programmer.</p>
+    </div>
+
+    <div id="education" class="tab-content">
+        <h2>Education</h2>
+        <ul>
+            <li>Currently Attending - Bachelor of Science in Computer Science, Fredonia University</li>
+            <li>Graduated from (High School) - Bishop Timon St. Jude High School</li>
+        </ul>
+    </div>
+
+    <div id="experience" class="tab-content">
+        <h2>IT Experience</h2>
+        <h3>Lounge Attendant - SUNY Fredonia</h3>
+        <ul>
+            <li>Supervise 12 gaming PCs and consoles (Xbox, PS5, Nintendo Switch), ensuring all equipment runs smoothly.</li>
+            <li>Track sign-ins and equipment usage for accountability.</li>
+            <li>Monitor environment for safety, enforcing rules during peak hours.</li>
+            <li>Troubleshoot/update PC and console issues on the fly.</li>
+        </ul>
+        <h3>AV Club - Bishop Timon St. Jude</h3>
+        <ul>
+            <li>Gained hands-on experience with video/audio production equipment.</li>
+            <li>Worked live streaming sports events and assisted with tech setup.</li>
+            <li>Used soundboards, wireless audio systems, amplifiers, and cameras.</li>
+        </ul>
+    </div>
+
+    <div id="skills" class="tab-content">
+        <h2>Skills</h2>
+        <ul>
+            <li><b>Programming:</b> C++, C#, Python, HTML, SQL, Bash. Some knowledge in Java, Kotlin, R, Perl, Assembly.</li>
+            <li><b>Web:</b> Strong with HTML/JavaScript. Built many web apps.</li>
+            <li><b>Cybersecurity:</b> Networking, routers/switches, troubleshooting.</li>
+            <li><b>OS:</b> Windows, Linux (Ubuntu/Debian), macOS, Android. Command-line and system admin experience.</li>
+            <li><b>VMs:</b> Experienced setting up and configuring virtual machines.</li>
+            <li><b>Tools Used:</b>
+                <ul>
+                    <li>Microsoft Office Suite (Word, Excel, PowerPoint, Access)</li>
+                    <li>Visual Studio / VS Code</li>
+                    <li>GitHub (individual & group work)</li>
+                    <li>WinSCP (remote file transfer)</li>
+                    <li>Terminal / PowerShell (automation, search, admin tasks)</li>
+                </ul>
+            </li>
+            <li><b>Projects:</b>
+                <ul>
+                    <li>C++: file editors, automation tools, math programs, games, database-linked apps</li>
+                    <li>Python: scripting, pattern parsing, automation</li>
+                    <li>Bash: install/uninstall scripts, system tweaks on Windows</li>
+                    <li>Homebrew/Modding: installed custom firmware, WiiFlow/USB Loader on Wii, handled troubleshooting</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div id="contact" class="tab-content">
+        <h2>Contact Me</h2>
+        <p>If you'd like to get in touch with me, fill out the form below and I'll reach out as soon as I can!</p>
+
+        <form id="contactForm" action="https://submit-form.com/w4rC8WMH3">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required placeholder="Name" />
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="Email" />
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required placeholder="Message"></textarea>
+            <button type="submit">Send</button>
+        </form>
+        <div class="popup" id="popup"></div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 Dan Finn</p>
+    <p>Thank you for visiting my website!</p>
+</footer>
+
+<script>
+    // tab switching logic
+    document.querySelectorAll('.tab-button').forEach(button => {
+        button.addEventListener('click', () => {
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            button.classList.add('active');
+            document.getElementById(button.getAttribute('data-tab')).classList.add('active');
+        });
+    });
+
+    // contact form logic
+    document.addEventListener("DOMContentLoaded", function() {
+        const form = document.getElementById("contactForm");
+        const popup = document.getElementById("popup");
+
+        if (localStorage.getItem("formSubmitted") === "true") {
+            disableForm();
+        }
+
+        function disableForm() {
+            form.querySelector("button[type='submit']").disabled = true;
+            showPopup("Message already sent. You can only submit once!");
+        }
+
+        function showPopup(message) {
+            popup.innerText = message;
+            popup.style.display = "block";
+            setTimeout(() => { popup.style.display = "none"; }, 3000);
+        }
+
+        form.addEventListener("submit", function(e) {
+            if (!localStorage.getItem("formSubmitted")) {
+                localStorage.setItem("formSubmitted", "true");
+                showPopup("Message sent! Thank you.");
+            } else {
+                e.preventDefault();
+                showPopup("Message already sent. You can only submit once!");
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
